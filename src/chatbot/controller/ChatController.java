@@ -1,18 +1,25 @@
 package chatbot.controller;
 
-import chat.view.ChatView;
+import chat.model.Chatbot;
+import chatbot.view.ChatView;
 
-/** 
- * Application controller for the Chatbot project.
- * @author mrir2917
- * 0@version 1.11 10/21/15 fixed error ;)
- */
-public class ChatController 
+public class ChatController
 {
-	private ChatVw myDisplay;
+	
+	private Chatbot simpleBot;
+	private ChatView display;
+	
+	public ChatController()
+	{
+		display = new ChatView();
+		String userName = display.collectUserInput("What is your name?"); 
+		simpleBot = new Chatbot(userName);
+	}
 	
 	public void start ()
 	{
-		
+		display.showText("Hello " + simpleBot.getUserName());
 	}
 }
+
+
