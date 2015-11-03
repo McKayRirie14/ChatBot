@@ -26,11 +26,18 @@ public class Chatbot
 		this.userName = userName;
 		this.content = "Motivational Sign!";
 		
+		buildMemesList();
+		buildPoliticalTopicsList();
 	}
 	
 	private void buildMemesList()
 	{
-		
+		this.memesList.add("cute animals");
+		this.memesList.add("doge");
+		this.memesList.add("spoderman");
+		this.memesList.add("aliens!");
+		this.memesList.add("what if i told you");
+		this.memesList.add("unhelpful high school teacher");
 	}
 	
 	private void buildPoliticalTopicsList()
@@ -71,7 +78,14 @@ public class Chatbot
 	 */
 	public boolean contentChecker(String currentInput)
 	{
-		return false;
+		boolean hasContent = false;
+		
+		if(currentInput.toLowerCase().contains(content.toLowerCase()))
+		{
+			hasContent = true;
+		}
+		
+		return hasContent;
 	}
 	
 	/**
@@ -96,6 +110,48 @@ public class Chatbot
 		return false;
 	}
 	
+	public String processConversation(String currentInput)
+	{
+		String nextConversation = "";
+		int randomTopic = (int) (Math.random() * 5); //Generates a random rumber betwee 0 and 4. 
+		
+		switch (randomTopic)
+		{
+			case 0:
+				if(memeChecker(currentInput))
+				{
+					nextConversation = "That is a very popular meme this year. What else are you" + "wanting to talk about?";
+				}
+				break;
+			case 1:
+				if(politicalTopicChecker(currentInput))
+				{
+					nextConversation = "some words and a question";
+				}
+				break;
+			case 2:
+				if(contentChecker(currentInput ))
+				{
+					nextConversation = "some words and a question";
+				}
+				break;
+			case 3:
+				if(currentInput.length() > 20)
+				{
+					nextConversation = "some words and a question";
+				}
+				break;
+			case 4:
+				nextConversation = "some random words aa random question";
+				break;
+			default:
+				nextConversation = "The universe has eneded sad panda";
+				break;
+		}
+		
+		return nextConversation;
+	}
+			
 	/**
 	 * Returns the username of this Chatbot instance.
 	 * @return The username of the Chatbot.
@@ -111,7 +167,7 @@ public class Chatbot
 	 */
 	public String getContent()
 	{
-		return null;
+		return content;
 	}
 	
 	/**
