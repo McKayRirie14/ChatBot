@@ -32,7 +32,8 @@ public class ChatController
 		String conversation = display.collectUserInput("What would you like to talk about today?");
 		while(simpleBot.lengthChecker(conversation))
 		{
-			conversation = simpleBot.processConversation(conversation);
+			conversation = simpleBot.processConversation(conversation));
+			conversation = display.collectUserText(conversation);
 		}
 	}
 	
