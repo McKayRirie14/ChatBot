@@ -16,23 +16,23 @@ public class ChatController
 	public ChatController()
 	{
 		display = new ChatView();
-		String userName = display.collectUserInput("What is your name?"); 
+		String userName = display.collectUserText("What is your name?"); 
 		simpleBot = new Chatbot(userName);
 	}
 	
 	public void start ()
 	{
-		display.showText("Hello " + simpleBot.getUserName());
+		display.displayText("Hello " + simpleBot.getUserName());
 		chat();
 		
 	}
 	
 	private void chat()
 	{
-		String conversation = display.collectUserInput("What would you like to talk about today?");
+		String conversation = display.collectUserText("What would you like to talk about today?");
 		while(simpleBot.lengthChecker(conversation))
 		{
-			conversation = simpleBot.processConversation(conversation));
+			conversation = simpleBot.processConversation(conversation);
 			conversation = display.collectUserText(conversation);
 		}
 	}

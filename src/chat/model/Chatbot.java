@@ -142,10 +142,10 @@ public class Chatbot
 				}
 				break;
 			case 4:
-				nextConversation = "some random words aa random question";
+				nextConversation = "some random words and a random question";
 				break;
 			default:
-				nextConversation = "The universe has eneded sad panda";
+				nextConversation = "The universe has ended sad panda";
 				break;
 		}
 		
