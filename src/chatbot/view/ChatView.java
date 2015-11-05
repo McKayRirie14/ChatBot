@@ -16,7 +16,7 @@ public class ChatView
 	public ChatView()
 	{
 		windowMessage = "Hello from your friendly chatbot :D";
-		chatIcon = new ImageIcon(getClass().getResource("images/LOL.jpg"));
+		chatIcon = new ImageIcon(getClass().getResource("images/kittybousnumbajuan.png"));
 	}
 	
 	
