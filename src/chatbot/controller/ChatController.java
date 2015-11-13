@@ -39,8 +39,9 @@ public class ChatController
 	
 	private void shutDown()
 	{
-		display.displayText("Goodbye, " + simpleBot.getUserName() + " it has been my pleasure to tallk with ");
+		display.displayText("Goodbye, " + simpleBot.getUserName() + " it has been my pleasure to tallk with you today! ;) ");
 	}
 }
+
 
 
