@@ -18,6 +18,7 @@ public class ChatController
 		display = new ChatView();
 		String userName = display.collectUserText("What is your name?"); 
 		simpleBot = new Chatbot(userName);
+		baseFrame = new ChatFrame(this);
 	}
 	
 	public void start ()
@@ -41,6 +42,18 @@ public class ChatController
 	{
 		display.displayText("Goodbye, " + simpleBot.getUserName() + " it has been my pleasure to tallk with you today! ;) ");
 	}
+	
+	public Chatbot getChatbot()
+	{
+		return simpleBot;
+	}
+	
+	public ChatView getChatView()
+	{
+		return display;
+	}
+	
+	
 }
 
 
