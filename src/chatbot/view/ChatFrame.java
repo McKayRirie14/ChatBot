@@ -1,6 +1,7 @@
 package chatbot.view;
 
 import javax.swing.JFrame;
+import chatbot.controller.ChatController;
 
 public class ChatFrame extends JFrame
 {
@@ -23,7 +24,7 @@ public class ChatFrame extends JFrame
 		this.setVisible(true);
 	}
 	
-	public ChatController getBaseCOntroller()
+	public ChatController getBaseController()
 	{
 		return baseController;
 	}

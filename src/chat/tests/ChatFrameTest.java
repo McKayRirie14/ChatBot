@@ -5,8 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import chat.view.*;
-import chat.controller.*;
+import chatbot.view.*;
+import chatbot.controller.*;
 
 public class ChatFrameTest
 {

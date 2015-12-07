@@ -151,6 +151,13 @@ public class Chatbot
 		
 		return nextConversation;
 	}
+	
+	public boolean quitChecker(String userText)
+	{
+		boolean isQuit = false;
+		if(userText.equalsIgnoreCase(userText));
+		return isQuit;
+	}
 			
 	/**
 	 * Returns the username of this Chatbot instance.

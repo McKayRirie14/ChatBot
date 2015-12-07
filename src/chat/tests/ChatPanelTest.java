@@ -5,11 +5,10 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import chat.view.*;
-import chat.controller.ChatController;
+import chatbot.controller.ChatController;
 import java.awt.Component;
 import java.awt.event.ActionListener;
-
+import chatbot.view.*;
 import javax.swing.JButton;
 
 public class ChatPanelTest
