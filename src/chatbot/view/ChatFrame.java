@@ -20,7 +20,7 @@ public class ChatFrame extends JFrame
 	{
 		this.setContentPane(basePanel);
 		this.setSize(400,400);
-		this.setTitle("Mr. Henrichsen's Chatbot");
+		this.setTitle("McKay's Chatbot");
 		this.setVisible(true);
 	}
 	

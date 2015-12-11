@@ -68,9 +68,9 @@ public class ChatController
 	{
 		return display;
 	}
-	public jFrame getbaseFrame()
+	public ChatFrame getbaseFrame()
 	{
-		return 
+		return baseFrame;
 	}
 	
 	

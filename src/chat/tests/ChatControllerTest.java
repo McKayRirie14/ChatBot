@@ -6,7 +6,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import chatbot.controller.ChatController;
-import chatbot.view.*;
+import chatbot.view.ChatView;
+import chatbot.view.ChatFrame;
 
 
 public class ChatControllerTest
@@ -31,7 +32,7 @@ public class ChatControllerTest
 		assertNotNull("Data member not initialized", testController.getChatbot());
 		assertNotNull("Data member not initialized", testController.getChatView());
 		assertTrue("Wrong display type", (testController.getChatView() instanceof ChatView));
-		assertTrue("Wrong Frame type",(testController.getBaseFrame() instanceof ChatFrame));
-		assertSame("wrong controller", testController, testController.getBaseFrame().getBaseController());
+		assertTrue("Wrong Frame type",(testController.getbaseFrame() instanceof ChatFrame));
+		assertSame("wrong controller", testController, testController.getbaseFrame().getBaseController());
 	}
 }
