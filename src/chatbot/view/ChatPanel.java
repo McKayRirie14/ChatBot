@@ -7,8 +7,10 @@ import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.SpringLayout;
 
 import chatbot.controller.ChatController;
@@ -21,37 +23,52 @@ public class ChatPanel extends JPanel
 	private JTextArea chatArea;
 	private JTextField typingField;
 	private JLabel promptLabel;
+	private JScrollPane textPane;
+	private JButton tweetButton;
+	private JButton saveButton;
+	private JButton loadButton;
+	
 	
 	public ChatPanel(ChatController baseController)
 	{
 		this.baseController = baseController;
 		baseLayout = new SpringLayout();
-		chatArea = new JTextArea(10,30);
-		typingField = new JTextField(30);
+		chatArea = new JTextArea(10,25);
+		typingField = new JTextField(25);
+		testButton = new JTextField(25);
 		promptLabel = new JLabel("Chat with me");
 		submitButton = new JButton("asda");
 		
+		setupChatPane();
 		setupPanel();
 		setupLayout();
 		setupListeners();
 	}
 	
-	private void setupPanel()
+	private void setupChatPane()
 	{
-		this.setLayout(baseLayout);
-		this.setBackground(Color.MAGENTA);
-		this.add(chatArea);
-		this.add(typingField);
-		this.add(submitButton);
-		this.add(promptLabel);
-		typingField.setToolTipText("Type here for the chatbot");
-		chatArea.setEnabled(false);
+		chatArea.setLineWrap(true);
+		chatArea.setWrapStyleWord(true);
+		chatArea.setEditable(false);
+		textPane = new JScrollPane(chatArea);
+		textPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+		textPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 	}
 	
 	private void setupLayout()
 	{
-		
+		baseLayout.putConstraint(SpringLayout.NORTH, textPane, 20, SpringLayout.North, this);
+		baseLayout.putConstraint(SpringLayout, c1, pad, e2, c2);
 	}
+	
+	private void setupPanel()
+	{
+		this.setLayout(baseLayout);
+		this.add(testButton);
+		this.add(textPane);
+		//DO NOT HAVE the line this.add(chatArea)
+		this.add (typingField);
+	}	
 	
 	private void setupListeners()
 	{
