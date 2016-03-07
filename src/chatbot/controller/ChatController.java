@@ -3,6 +3,7 @@ package chatbot.controller;
 import chat.model.Chatbot;
 import chatbot.view.ChatView;
 import chatbot.view.ChatFrame;
+import chat.model.CTECTwiter;
 
 public class ChatController
 {
@@ -11,6 +12,7 @@ public class ChatController
 	 * @author Mckay Ririe
 	 * @version 1.2 10/23/15 Displays the Chatbot's userName variable.
 	 */
+	private CTECTwitter chatTwitter;
 	private Chatbot simpleBot;
 	private ChatView display;
 	private ChatFrame baseFrame;
@@ -20,6 +22,8 @@ public class ChatController
 		display = new ChatView();
 		String userName = display.collectUserText("What is your name?"); 
 		simpleBot = new Chatbot(userName);
+		baseFrame = new ChatFrame(this);
+		chatTwitter = new CTECTwitter();
 		baseFrame = new ChatFrame(this);
 	}
 	
@@ -73,8 +77,14 @@ public class ChatController
 		return baseFrame;
 	}
 	
+	public void sendTweet(String tweetText)
+	{
+		chatTwitter.sendTweet(tweetText);
+	}
+	
+	public void handleErros(String errorMessage)
+	{
+		display.displayText(errorMessage);		
+	}
 	
 }
-
-
-
