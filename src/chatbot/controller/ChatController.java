@@ -37,11 +37,11 @@ public class ChatController
 	private void chat()
 	{
 		String conversation = display.collectUserText("What would you like to talk about today?");
-		//while(simpleBot.lengthChecker(conversation))
-		//{
-		//	conversation = simpleBot.processConversation(conversation);
-		//	conversation = display.collectUserText(conversation);
-		//}
+		while(sipmpleBot.lengthChecker(converstion))
+		{
+			conversation = simpleBot.processConversation(conversation);
+			conversation = display.collectUserText(conversation);
+		}
 	}
 	
 	public String userToChatbot(String userText)
@@ -87,4 +87,10 @@ public class ChatController
 		display.displayText(errorMessage);		
 	}
 	
+	public String analyze(String userName)
+	{
+		String userAnalysis = "The Twitter user " + userName + "has .....";
+		
+		return userAnalysis;
+	}
 }

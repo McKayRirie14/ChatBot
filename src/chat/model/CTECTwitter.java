@@ -3,7 +3,7 @@ package chat.model;
 import java.util.ArrayList;
 import twitter4j.*; //Add the core_XXX.jar to the buildpath
 import java.io.*;
-import chat.controller.ChatController;
+import chatbot.controller.ChatController;
 
 /**@author mrir2917
  * @version 0.2
@@ -26,7 +26,10 @@ public class CTECTwitter
 		
 	}
 	
-	 // Send the supplied message as a tweet.
+	 /**
+	  * Send the supplied message as a tweet.
+	  * @param tweet The supplied String.
+	  */
 	public void sendTweet(String tweet)
 	{
 		try
@@ -39,4 +42,10 @@ public class CTECTwitter
 		}
 	}
 	
+	/**
+	 * Creates the statistics about the tweets.
+	 * @param wordList The supplied list of words.
+	 * @return A String containing the name of the user.
+	 * 
+	 */
 }

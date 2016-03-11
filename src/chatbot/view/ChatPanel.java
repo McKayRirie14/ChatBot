@@ -27,22 +27,28 @@ public class ChatPanel extends JPanel
 	private JButton tweetButton;
 	private JButton saveButton;
 	private JButton loadButton;
-	
+	private JButton analyzeTwitterButton;
 	
 	public ChatPanel(ChatController baseController)
 	{
-		this.baseController = baseController;
 		baseLayout = new SpringLayout();
 		chatArea = new JTextArea(10,25);
 		typingField = new JTextField(25);
-		testButton = new JTextField(25);
+		testButton = new JButton(25);
 		promptLabel = new JLabel("Chat with me");
 		submitButton = new JButton("asda");
+		analyzeTwitterButton = new Jbutton("Analyze some tweets");
+		loadButton = new JButton("Load")
+		saveButton = new JButton("Save");
+		tweetButton = new JButton("tweet");
+		
+
 		
 		setupChatPane();
 		setupPanel();
 		setupLayout();
 		setupListeners();
+		
 	}
 	
 	private void setupChatPane()
@@ -68,6 +74,7 @@ public class ChatPanel extends JPanel
 		this.add(textPane);
 		//DO NOT HAVE the line this.add(chatArea)
 		this.add (typingField);
+		this.add(typingField)
 	}	
 	
 	private void setupListeners()
@@ -97,6 +104,8 @@ public class ChatPanel extends JPanel
 					baseController.sendTweet("no text to send");
 				}
 			});
+			
+			
 		});
 	}
 	
