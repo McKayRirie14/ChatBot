@@ -74,7 +74,7 @@ public class ChatPanel extends JPanel
 		this.add(textPane);
 		//DO NOT HAVE the line this.add(chatArea)
 		this.add (typingField);
-		this.add(typingField)
+		this.add(typingField);
 	}	
 	
 	private void setupListeners()
