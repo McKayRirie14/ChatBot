@@ -1,8 +1,10 @@
 package chat.model;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import twitter4j.*;
+import java.util.*;
+import java.io.*;
+import chat.controller.ChatController;
+
 
 import twitter4j.*; //Add the core_XXX.jar to the buildpath
 
@@ -35,16 +37,9 @@ public class CTECTwitter
 	  * Send the supplied message as a tweet.
 	  * @param tweet The supplied String.
 	  */
-	public void sendTweet(String tweet)
+	public void sendTweet(String tweetText)
 	{
-		try
-		{
-			chatbotTwitter.updateStatus("");
-		}
-		catch(TwitterExeption error)
-		{
-			baseController.handleErrors(error.getErrorMessage());
-		}
+		chatTwitter.sendTweet(tweetText)
 	}
 	
 	public void loadTweets(String twitterHane) throws TwitterExeption
@@ -147,6 +142,47 @@ public class CTECTwitter
 			return new String[0];
 		}
 		return boringWords;
+	}
+	
+	private void removeTwitterUsernamesFromLise(List<String> wordList)
+	{
+		for(int wordCount = 0; wordList.size(); wordCount++)
+		{
+			if (wordList.get(wordCount).length() >= 1 && wordList.get(wordCount).charAt(0) == '@')
+			{
+				wordList.remove(wordCount);
+				wordCount--;
+			}
+		}
+	}
+	
+	public String topResults(List<String> wordList)
+	{
+		String tweetResults = "";
+				
+		int topWordLocation = 0;		
+		int topCount = 0;
+		
+		for(int index = 0; index < wordList.size(); index++)
+		{
+			int wordUseCount = 1;
+		
+			for(int spot = index + 1; spot < wordList.size(); spot++)
+			{
+				if(wordList.get(index).equals(wordList.get(spot)))
+				{
+					wordUseCount++;
+				}
+				if(wordUseCount > topCount)
+				{
+					topCount = wordUseCount;
+					topWordLocation = index;
+				}
+			}
+		}
+		
+		tweetResults = "The top word in the tweets was " + wordList.get(topWordLocation) + " and it was used" +
+				topCount + "times!";
 	}
 	
 	/**
