@@ -39,7 +39,7 @@ public class CTECTwitter
 	  */
 	public void sendTweet(String tweetText)
 	{
-		chatTwitter.sendTweet(tweetText)
+		chatbotTwitter.sendTweet(tweetText)
 	}
 	
 	public void loadTweets(String twitterHane) throws TwitterExeption
@@ -156,20 +156,20 @@ public class CTECTwitter
 		}
 	}
 	
-	public String topResults(List<String> wordList)
+	public String topResults()
 	{
 		String tweetResults = "";
 				
 		int topWordLocation = 0;		
 		int topCount = 0;
 		
-		for(int index = 0; index < wordList.size(); index++)
+		for(int index = 0; index < wordsList.size(); index++)
 		{
 			int wordUseCount = 1;
 		
-			for(int spot = index + 1; spot < wordList.size(); spot++)
+			for(int spot = index + 1; spot < wordsList.size(); spot++)
 			{
-				if(wordList.get(index).equals(wordList.get(spot)))
+				if(wordsList.get(index).equals(wordsList.get(spot)))
 				{
 					wordUseCount++;
 				}
@@ -181,9 +181,34 @@ public class CTECTwitter
 			}
 		}
 		
-		tweetResults = "The top word in the tweets was " + wordList.get(topWordLocation) + " and it was used" +
+		tweetResults = "The top word in the tweets was " + wordsList.get(topWordLocation) + " and it was used" +
 				topCount + "times!";
 	}
+	
+public String sampleInvestigation()
+{
+	String result = "";
+	
+	Query query = new Query("marathon");
+	query.setCount(100);
+	query.setGeoCode(new GeoLocation(40.587521, -111.869178) 5, Query.MILES);
+	query.setSince("2016-1-1");
+	try
+	{
+		QueryResult results = chatbotTwitter.search(query);
+		results.concat("Count : " + result.getTweets().size());
+		for (Status tweet : result.getTweets())
+		{
+			results.concat("@" + tweet.getUser().getName() + tweet.getText() + "/n");
+		}
+	}
+	catch(TwitterException error)
+	{
+		error.printStackTrace();
+	}
+	
+	return results;
+}
 	
 	/**
 	 * Creates the statistics about the tweets.
