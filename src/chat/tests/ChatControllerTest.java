@@ -5,19 +5,19 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import chatbot.controller.ChatController;
+import chatbot.controller.ChatbotController;
 import chatbot.view.ChatView;
 import chatbot.view.ChatFrame;
 
 
 public class ChatControllerTest
 {
-	private ChatController testController;
+	private ChatbotController testController;
 
 	@Before
 	public void setUp() throws Exception
 	{
-		testController = new ChatController();
+		testController = new ChatbotController();
 	}
 
 	@After
@@ -29,7 +29,7 @@ public class ChatControllerTest
 	@Test
 	public void testChatController()
 	{
-		assertNotNull("Data member not initialized", testController.getChatbot());
+		assertNotNull("Data member not initialized", testController.getMyBot());
 		assertNotNull("Data member not initialized", testController.getChatView());
 		assertTrue("Wrong display type", (testController.getChatView() instanceof ChatView));
 		assertTrue("Wrong Frame type",(testController.getbaseFrame() instanceof ChatFrame));

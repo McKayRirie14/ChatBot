@@ -1,17 +1,20 @@
 package chatbot.view;
 
 import javax.swing.JFrame;
-import chatbot.controller.ChatController;
+import chatbot.controller.ChatbotController;
+import chatbot.view.ChatPanel;
 
 public class ChatFrame extends JFrame
 {
-	private ChatController baseController;
+	private ChatbotController baseController;
 	private ChatPanel basePanel;
 	
-	public ChatFrame(ChatController baseController)
+	private ChatFrame(){}
+	
+	public ChatFrame(ChatbotController baseController)
 	{
 		this.baseController = baseController;
-		basePanel = new ChatPanel(baseController);
+		this.basePanel = new ChatPanel(baseController);
 		
 		setupFrame();
 	}
@@ -19,13 +22,16 @@ public class ChatFrame extends JFrame
 	private void setupFrame()
 	{
 		this.setContentPane(basePanel);
-		this.setSize(400,400);
-		this.setTitle("McKay's Chatbot");
+		this.setSize(600, 530);
+		this.setTitle("ChatBot");
+		this.setResizable(false);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setVisible(true);
 	}
 	
-	public ChatController getBaseController()
+	public ChatbotController getBaseController()
 	{
 		return baseController;
 	}
+	
 }

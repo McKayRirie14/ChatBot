@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import chatbot.controller.ChatController;
+import chatbot.controller.ChatbotController;
 import java.awt.Component;
 import java.awt.event.ActionListener;
 import chatbot.view.*;
@@ -18,7 +18,7 @@ public class ChatPanelTest
 	@Before
 	public void setUp() throws Exception
 	{
-		basePanel = new ChatPanel(new ChatController());
+		basePanel = new ChatPanel(new ChatbotController());
 	}
 
 	@After

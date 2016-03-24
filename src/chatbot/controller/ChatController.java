@@ -1,96 +1,137 @@
 package chatbot.controller;
 
-import chat.model.Chatbot;
-import chatbot.view.ChatView;
-import chatbot.view.ChatFrame;
-import chat.model.CTECTwiter;
+import twitter4j.TwitterException;
+import chatbot.model.*;
+import chatbot.view.*;
 
-public class ChatController
+public class ChatbotController 
 {
-	/**
-	 * Controller for the Chatbot project.
-	 * @author Mckay Ririe
-	 * @version 1.2 10/23/15 Displays the Chatbot's userName variable.
-	 */
-	private CTECTwitter chatTwitter;
-	private Chatbot simpleBot;
-	private ChatView display;
+	private Chatbot myBot;
+	private CTECTwitter chatbotTwitter;
+	
+	private ChatView chatView;
 	private ChatFrame baseFrame;
+	private ChatPanel basePanel;
+	private String userName;
 	
-	public ChatController()
+	public ChatbotController()
 	{
-		display = new ChatView();
-		String userName = display.collectUserText("What is your name?"); 
-		simpleBot = new Chatbot(userName);
+		
+		chatView = new ChatView();
+		userName = chatView.getResponce("Whats your name?", "User");
+		
+		myBot = new Chatbot(userName);
+		chatbotTwitter = new CTECTwitter(this);
+		
 		baseFrame = new ChatFrame(this);
-		chatTwitter = new CTECTwitter();
-		baseFrame = new ChatFrame(this);
-	}
-	
-	public void start ()
-	{
-		display.displayText("Hello " + simpleBot.getUserName());
-		chat();
 		
 	}
 	
-	private void chat()
-	{
-		String conversation = display.collectUserText("What would you like to talk about today?");
-		while(sipmpleBot.lengthChecker(converstion))
-		{
-			conversation = simpleBot.processConversation(conversation);
-			conversation = display.collectUserText(conversation);
-		}
-	}
+//	private void chat()
+//	{
+//		String conversation = chatView.getResponce("What would you like to talk about today?", "Somthing");
+//		myBot.contentChecker(conversation);
+//		while(myBot.lengthChecker(conversation))
+//		{
+//			conversation = myBot.processConversation(conversation);
+//			conversation = chatView.getResponce(conversation, "Something");
+//		}
+//	}
 	
 	public String userToChatbot(String userText)
 	{
-		String response = "";
+		String responce = "ERROR=NoResponceFromChatBot";
 		
-		if(simpleBot.quitChecker(userText))
+		if(myBot.quitChecker(userText))
 		{
 			shutDown();
 		}
-		response = simpleBot.processConversation(userText);
 		
-		return response;
+		responce = myBot.processConversation(userText);
+		
+		return responce;
 	}
 	
-	private void shutDown()
+	public void shutDown()
 	{
-		display.displayText("Goodbye, " + simpleBot.getUserName() + " it has been my pleasure to tallk with you today! ;) ");
+		chatView.displayMessage("Goodbye, " + myBot.getUserName() + " it has been my pleasure to talk to you.");
 		System.exit(0);
-	}
-	
-	public Chatbot getChatbot()
-	{
-		return simpleBot;
-	}
-	
-	public ChatView getChatView()
-	{
-		return display;
-	}
-	public ChatFrame getbaseFrame()
-	{
-		return baseFrame;
 	}
 	
 	public void sendTweet(String tweetText)
 	{
-		chatTwitter.sendTweet(tweetText);
-	}
-	
-	public void handleErros(String errorMessage)
-	{
-		display.displayText(errorMessage);		
+		chatbotTwitter.sendTweet(tweetText);
 	}
 	
 	public String analyze(String userName)
 	{
-		String userAnalysis = "The Twitter user " + userName + "has .....";
+		try
+		{
+			chatbotTwitter.loadTweets(userName);
+		}
+		catch (TwitterException e)
+		{
+			return "Error - twitter load failed";
+		}
 		
+		String userAnalysis = "The Twitter user " + userName + " has " + chatbotTwitter.topResults() + " Tweets.";
+		userAnalysis = chatbotTwitter.topResults();
 		return userAnalysis;
 	}
+	
+	public void handleError(String errorMessage)
+	{
+		chatView.displayMessage(errorMessage);
+	}
+	
+	public Chatbot getMyBot()
+	{
+		return myBot;
+	}
+
+	public void setMyBot(Chatbot myBot)
+	{
+		this.myBot = myBot;
+	}
+
+	public ChatView getChatView()
+	{
+		return chatView;
+	}
+
+	public void setChatView(ChatView chatView)
+	{
+		this.chatView = chatView;
+	}
+
+	public ChatFrame getBaseFrame()
+	{
+		return baseFrame;
+	}
+
+	public void setBaseFrame(ChatFrame baseFrame)
+	{
+		this.baseFrame = baseFrame;
+	}
+
+	public ChatPanel getBasePanel()
+	{
+		return basePanel;
+	}
+
+	public void setBasePanel(ChatPanel basePanel)
+	{
+		this.basePanel = basePanel;
+	}
+
+	public String getUserName()
+	{
+		return userName;
+	}
+
+	public void setUserName(String userName)
+	{
+		this.userName = userName;
+	}
+	
 }

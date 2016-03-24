@@ -4,44 +4,34 @@ import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 
 /**
- * Popup display class for GUI interaction in the Chatbot project
- * @author mrir2917
- * @version 1.3 11/5/15 Added Icons to popup windows!
+ * popup display class for GUI interatcion in the chatbot project
+ * @author jker3169
+ *@version 1.3 11/5/15 Added Icons to popup windows!
  */
-public class ChatView
+public class ChatView 
 {
-	private String windowMessage;
+	
+	private String windMessage;
 	private ImageIcon chatIcon;
 	
 	public ChatView()
 	{
-		windowMessage = "Hello from your friendly chatbot :D";
-		chatIcon = new ImageIcon(getClass().getResource("images/kittybousnumbajuan.png"));
+		windMessage = "Hello from your friendly chatbot :D";
+		chatIcon = new ImageIcon(getClass().getResource("images/AppIcon.png"));
 	}
 	
-	
-	/**
-	 * Displays a GUi poopup for collecting user text with the supplied String.
-	 * Usually in the form of a question to collect or further use in the program.
-	 * @param displayText The Text to show in the popup window. Should be a question
-	 * @return The text supplied by the user.
-	 */
-	
-	public String collectUserText(String displayText) 
+	public void displayMessage(String message)
 	{
-		String userInput = "";
-		
-		userInput = JOptionPane.showInputDialog(null, displayText, windowMessage, JOptionPane.PLAIN_MESSAGE, chatIcon, null, "Answer here :)").toString();
-		
-		return userInput;	
+		JOptionPane.showMessageDialog(null, message,windMessage, JOptionPane.PLAIN_MESSAGE, chatIcon);
 	}
 	
-	/**
-	 * Displays a String to the user with a standard popup.
-	 * @param displayText(String displayText The supplied text to be displayed.
-	 */
-	public void displayText (String displayText)
+	public String getResponce(String message, String textDefault)
 	{
-		JOptionPane.showMessageDialog(null, displayText, windowMessage, JOptionPane.INFORMATION_MESSAGE, chatIcon);
+		String output = "";
+		
+		output = JOptionPane.showInputDialog(null, message, windMessage, JOptionPane.PLAIN_MESSAGE, chatIcon, null, textDefault) + " ";
+		
+		return output;
 	}
+	
 }
